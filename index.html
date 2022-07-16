@@ -91,11 +91,93 @@
 	</tr>
 	</tbody></table>
 
-	<h2>发音矫正</h2>
-	<p>在本节实验中，我们展示了各模型进行语音生成或是发音矫正的效果。
+	<h2>误读生成</h2>
+	<p>在本节实验中，我们展示了基于声学单位来模拟误读的效果。每组样例中，第一行的为原始声学单位转换后的语音；第二行为随机进行修改后的读音。需要注意的是某些误读的声学单位组合可能并没有出现在Unit2Audio模块的训练样本中，因此可能合成效果较差。
+	从这些样本中可以听出，修改后的读音和原始读音较为接近，因此较为接近真实的误读情况。
 	</p>
 
-        <h4>样例1: HQTV_arctic_a0099</h4>
+	<table><thead>
+	<tr>
+		<th style="text-align: center">样例1</th>
+		<th style="text-align: center">样例2</th>
+		<th style="text-align: center">样例3</th>
+	</tr></thead><tbody>
+	<tr>
+                    <td><audio src="mis/1735_777_126732_000076_000007_gt.wav?raw=true" controls preload></audio></td>
+                    <td><audio src="mis/1735_1462_170142_000027_000000_gt.wav?raw=true" controls preload></audio></td>
+                    <td><audio src="mis/1735_1462_170142_000038_000003_gt.wav?raw=true" controls preload></audio></td>
+	</tr>
+
+	<tr>
+		<th style="text-align: center">样例1误读</th>
+		<th style="text-align: center">样例2误读</th>
+		<th style="text-align: center">样例3误读</th>
+	</tr></thead><tbody>
+	<tr>
+                    <td><audio src="mis/1735_777_126732_000076_000007_p.wav?raw=true" controls preload></audio></td>
+                    <td><audio src="mis/1735_1462_170142_000027_000000_p.wav?raw=true" controls preload></audio></td>
+                    <td><audio src="mis/1735_1462_170142_000038_000003_p.wav?raw=true" controls preload></audio></td>
+	</tr>
+	</tbody></table>
+
+
+
+
+	<table><thead>
+	<tr>
+		<th style="text-align: center">样例4</th>
+		<th style="text-align: center">样例5</th>
+		<th style="text-align: center">样例6</th>
+	</tr></thead><tbody>
+	<tr>
+                    <td><audio src="mis/1735_2086_149220_000021_000005_gt.wav?raw=true" controls preload></audio></td>
+                    <td><audio src="mis/1735_2277_149897_000004_000000_gt.wav?raw=true" controls preload></audio></td>
+                    <td><audio src="mis/1735_2428_83699_000047_000000_gt.wav?raw=true" controls preload></audio></td>
+	</tr>
+
+	<tr>
+		<th style="text-align: center">样例4误读</th>
+		<th style="text-align: center">样例5误读</th>
+		<th style="text-align: center">样例6误读</th>
+	</tr></thead><tbody>
+	<tr>
+                    <td><audio src="mis/1735_2086_149220_000021_000005_p.wav?raw=true" controls preload></audio></td>
+                    <td><audio src="mis/1735_2277_149897_000004_000000_p.wav?raw=true" controls preload></audio></td>
+                    <td><audio src="mis/1735_2428_83699_000047_000000_p.wav?raw=true" controls preload></audio></td>
+	</tr>
+	</tbody></table>	
+
+
+	<h2>发音矫正</h2>
+	<p>在本节实验中，我们展示了各模型进行语音生成或是发音矫正的效果。读者可以参考GoogleTTS以获得每句的标准读音。
+	值得注意的是，GoogleTTS并不能克隆原始音频的音色，而GlowTTS虽然可以克隆音色，但无法保留原始音频中的节奏信息。本文提出的单阶段、双阶段发音矫正模型则可以解决这一问题。
+	</p>
+        <h4>样例1: LXC_arctic_a0089</h4>
+	<table><thead>
+	<tr>
+		<th style="text-align: center">原始音频</th>
+		<th style="text-align: center">声学单位重合成</th>
+		<th style="text-align: center">GoogleTTS</th>
+	</tr></thead><tbody>
+	<tr>
+                    <td><audio src="correct/LXC_arctic_a0089_gt.wav?raw=true" controls preload></audio></td>
+                    <td><audio src="correct/LXC_arctic_a0089_unit_raw.wav?raw=true" controls preload></audio></td>
+                    <td><audio src="correct/LXC_arctic_a0089_gtts.wav?raw=true" controls preload></audio></td>
+	</tr>
+
+	<tr>
+		<th style="text-align: center">GlowTTS</th>
+		<th style="text-align: center">单阶段发音矫正</th>
+		<th style="text-align: center">双阶段发音矫正</th>
+	</tr></thead><tbody>
+	<tr>
+                    <td><audio src="correct/LXC_arctic_a0089_tts.wav?raw=true" controls preload></audio></td>
+                    <td><audio src="correct/LXC_arctic_a0089_unit_cvted.wav?raw=true" controls preload></audio></td>
+                    <td><audio src="correct/LXC_arctic_a0089_cor.wav?raw=true" controls preload></audio></td>
+	</tr>
+	</tbody></table>
+
+        <h4>样例2: HQTV_arctic_a0099</h4>
 	<table><thead>
 	<tr>
 		<th style="text-align: center">原始音频</th>
@@ -121,7 +203,7 @@
 	</tbody></table>
 
 
-        <h4>样例2: ERMS_arctic_a0079</h4>
+        <h4>样例3: ERMS_arctic_a0079</h4>
 	<table><thead>
 	<tr>
 		<th style="text-align: center">原始音频</th>
@@ -147,7 +229,7 @@
 	</tbody></table>
 
 	
-        <h4>样例3: HQTV_arctic_a0030</h4>
+        <h4>样例4: HQTV_arctic_a0030</h4>
 	<table><thead>
 	<tr>
 		<th style="text-align: center">原始音频</th>
@@ -174,7 +256,7 @@
 
 
 	
-        <h4>样例4: TLV_arctic_a0130</h4>
+        <h4>样例5: TLV_arctic_a0130</h4>
 	<table><thead>
 	<tr>
 		<th style="text-align: center">原始音频</th>
