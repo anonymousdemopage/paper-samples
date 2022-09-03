@@ -2,175 +2,27 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>基于深度学习的口语评测算法研究</title>
+    <title>口语评测算法测试问卷</title>
 </head>
 <body>
     <header>
-        <h1>基于深度学习的口语评测算法研究</h1>
-		
-	<h2>Pronunciation Evaluation Algorithm Based on Deep-Learning</h2>
-	<tbody><table>
-		<p>本页面包含论文《基于深度学习的口语评测算法研究》的音频样例，主要展示基于声学单位的实验以及发音矫正的音频样例。
-		</p>
+        <h1>口语评测算法测试问卷</h1>
 
-	</tbody></table>
-
-    </header>
-    <main>
-	<h2>声学单位重合成</h2>
-	<p>如论文所述，离散的声学单位能够提取原始音频的语义信息，这一性质与语音合成或者语音识别中“音素”这一概念非常相似。
-	为了验证其提取语义信息的效果，我们首先验证了声学单位重合成的效果。
-	</p>
-
-	<p>在本小节中，我们基于声学单位序列以及不同的X-Vector说话人向量合成了下列音频样例。
-	在每个样例中，每个说话人的第一行为原始读音，第二行则为该原始读音的声学单位序列结合说话人1的X-Vector而合成的音频。
-	由这些样例可知，声学单位序列结合新的X-Vector向量即可克隆出新的音色而保留原始内容。这一现象表明声学序列能够较好地保留原始音频中的语义信息，但丢失了部分说话人相关的信息，这一信息可由X-Vector来补充，进而构建出基于其他说话人的读音。
-	</p>
-
-	<h3>样例1</h3>
-	<table><thead>
-	<tr>
-		<th style="text-align: center">说话人1</th>
-		<th style="text-align: center">说话人2</th>
-		<th style="text-align: center">说话人3</th>
-	</tr></thead><tbody>
-	<tr>
-                    <td><audio src="change_speaker/2_0_gt.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="change_speaker/2_1_gt.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="change_speaker/2_2_gt.wav?raw=true" controls preload></audio></td>
-	</tr>
-
-	<tr>
-	</tr></thead><tbody>
-	<tr>
-                    <td><audio src="change_speaker/2_0_p.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="change_speaker/2_1_p.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="change_speaker/2_2_p.wav?raw=true" controls preload></audio></td>
-	</tr>
-	</tbody></table>
-	<h3>样例2</h3>
-	<table><thead>
-	<tr>
-		<th style="text-align: center">说话人1</th>
-		<th style="text-align: center">说话人2</th>
-		<th style="text-align: center">说话人3</th>
-	</tr></thead><tbody>
-	<tr>
-                    <td><audio src="change_speaker/3_0_gt.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="change_speaker/3_1_gt.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="change_speaker/3_2_gt.wav?raw=true" controls preload></audio></td>
-	</tr>
-
-	<tr>
-	</tr></thead><tbody>
-	<tr>
-                    <td><audio src="change_speaker/3_0_p.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="change_speaker/3_1_p.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="change_speaker/3_2_p.wav?raw=true" controls preload></audio></td>
-	</tr>
-	</tbody></table>
-	<h3>样例3</h3>
-	<table><thead>
-	<tr>
-		<th style="text-align: center">说话人1</th>
-		<th style="text-align: center">说话人2</th>
-		<th style="text-align: center">说话人3</th>
-	</tr></thead><tbody>
-	<tr>
-                    <td><audio src="change_speaker/4_0_gt.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="change_speaker/4_1_gt.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="change_speaker/4_2_gt.wav?raw=true" controls preload></audio></td>
-	</tr>
-
-	<tr>
-	</tr></thead><tbody>
-	<tr>
-                    <td><audio src="change_speaker/4_0_p.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="change_speaker/4_1_p.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="change_speaker/4_2_p.wav?raw=true" controls preload></audio></td>
-	</tr>
-	</tbody></table>
-
-	<h2>误读生成</h2>
-	<p>在本节实验中，我们展示了基于声学单位来模拟误读的效果。每组样例中，第一行的为原始声学单位转换后的语音；第二行为随机进行修改后的读音。需要注意的是某些误读的声学单位组合可能并没有出现在Unit2Audio模块的训练样本中，因此可能合成效果较差。
-	从这些样本中可以听出，修改后的读音和原始读音较为接近，因此较为接近真实的误读情况。
-	由于声学单位的数量是可控的，这一方法能够生成出更细粒度的误读，还能够提供语义距离作为误读的程度。相比之下，采用语音合成模型来生成误读则只能通过替换音素来模拟误读，而音素的类别数是有限的，无法模拟出本方法的效果。
-	由本节可知，本文提出的方法能够模拟出更为真实的误读，因此能够从常见的语音识别数据集中构建出成对的标准发音-误读发音数据，进而用于单阶段的发音矫正模型训练。
-	</p>
-
-	<table><thead>
-	<tr>
-		<th style="text-align: center">样例1</th>
-		<th style="text-align: center">样例2</th>
-		<th style="text-align: center">样例3</th>
-	</tr></thead><tbody>
-	<tr>
-                    <td><audio src="mis/1735_777_126732_000076_000007_gt.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="mis/1735_1462_170142_000027_000000_gt.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="mis/1735_1462_170142_000038_000003_gt.wav?raw=true" controls preload></audio></td>
-	</tr>
-
-	<tr>
-		<th style="text-align: center">样例1误读</th>
-		<th style="text-align: center">样例2误读</th>
-		<th style="text-align: center">样例3误读</th>
-	</tr></thead><tbody>
-	<tr>
-                    <td><audio src="mis/1735_777_126732_000076_000007_p.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="mis/1735_1462_170142_000027_000000_p.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="mis/1735_1462_170142_000038_000003_p.wav?raw=true" controls preload></audio></td>
-	</tr>
-	</tbody></table>
-
-
-
-
-	<table><thead>
-	<tr>
-		<th style="text-align: center">样例4</th>
-		<th style="text-align: center">样例5</th>
-		<th style="text-align: center">样例6</th>
-	</tr></thead><tbody>
-	<tr>
-                    <td><audio src="mis/1735_2086_149220_000021_000005_gt.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="mis/1735_2277_149897_000004_000000_gt.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="mis/1735_2428_83699_000047_000000_gt.wav?raw=true" controls preload></audio></td>
-	</tr>
-
-	<tr>
-		<th style="text-align: center">样例4误读</th>
-		<th style="text-align: center">样例5误读</th>
-		<th style="text-align: center">样例6误读</th>
-	</tr></thead><tbody>
-	<tr>
-                    <td><audio src="mis/1735_2086_149220_000021_000005_p.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="mis/1735_2277_149897_000004_000000_p.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="mis/1735_2428_83699_000047_000000_p.wav?raw=true" controls preload></audio></td>
-	</tr>
-	</tbody></table>	
-
-
-	<h2>发音矫正</h2>
-	<p>在本节实验中，我们展示了各模型进行语音生成或是发音矫正的效果。读者可以参考GoogleTTS以获得每句的标准读音。
-	值得注意的是，GoogleTTS并不能克隆原始音频的音色，而GlowTTS虽然可以克隆音色，但无法保留原始音频中的节奏信息。本文提出的单阶段、双阶段发音矫正模型则可以解决这一问题。
-	</p>
-        <h4>样例1: LXC_arctic_a0089</h4>
+        <h4>The night glow was treacherous to shoot by.</h4>
 	<table><thead>
 	<tr>
 		<th style="text-align: center">原始音频</th>
-		<th style="text-align: center">声学单位重合成</th>
-		<th style="text-align: center">GoogleTTS</th>
+		<th style="text-align: center">1</th>
 	</tr></thead><tbody>
 	<tr>
                     <td><audio src="correct/LXC_arctic_a0089_gt.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="correct/LXC_arctic_a0089_unit_raw.wav?raw=true" controls preload></audio></td>
                     <td><audio src="correct/LXC_arctic_a0089_gtts.wav?raw=true" controls preload></audio></td>
 	</tr>
 
 	<tr>
-		<th style="text-align: center">GlowTTS</th>
-		<th style="text-align: center">单阶段发音矫正</th>
-		<th style="text-align: center">双阶段发音矫正</th>
+		<th style="text-align: center">2</th>
+		<th style="text-align: center">3</th>
+		<th style="text-align: center">4</th>
 	</tr></thead><tbody>
 	<tr>
                     <td><audio src="correct/LXC_arctic_a0089_tts.wav?raw=true" controls preload></audio></td>
@@ -179,23 +31,21 @@
 	</tr>
 	</tbody></table>
 
-        <h4>样例2: HQTV_arctic_a0099</h4>
+        <h4>A maddening joy pounded in his brain.</h4>
 	<table><thead>
 	<tr>
 		<th style="text-align: center">原始音频</th>
-		<th style="text-align: center">声学单位重合成</th>
-		<th style="text-align: center">GoogleTTS</th>
+		<th style="text-align: center">1</th>
 	</tr></thead><tbody>
 	<tr>
                     <td><audio src="correct/HQTV_arctic_a0099_gt.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="correct/HQTV_arctic_a0099_unit_raw.wav?raw=true" controls preload></audio></td>
                     <td><audio src="correct/HQTV_arctic_a0099_gtts.wav?raw=true" controls preload></audio></td>
 	</tr>
 
 	<tr>
-		<th style="text-align: center">GlowTTS</th>
-		<th style="text-align: center">单阶段发音矫正</th>
-		<th style="text-align: center">双阶段发音矫正</th>
+		<th style="text-align: center">2</th>
+		<th style="text-align: center">3</th>
+		<th style="text-align: center">4</th>
 	</tr></thead><tbody>
 	<tr>
                     <td><audio src="correct/HQTV_arctic_a0099_tts.wav?raw=true" controls preload></audio></td>
@@ -205,23 +55,21 @@
 	</tbody></table>
 
 
-        <h4>样例3: ERMS_arctic_a0079</h4>
+        <h4>It was a large canoe.</h4>
 	<table><thead>
 	<tr>
 		<th style="text-align: center">原始音频</th>
-		<th style="text-align: center">声学单位重合成</th>
-		<th style="text-align: center">GoogleTTS</th>
+		<th style="text-align: center">1</th>
 	</tr></thead><tbody>
 	<tr>
                     <td><audio src="correct/ERMS_arctic_a0079_gt.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="correct/ERMS_arctic_a0079_unit_raw.wav?raw=true" controls preload></audio></td>
                     <td><audio src="correct/ERMS_arctic_a0079_gtts.wav?raw=true" controls preload></audio></td>
 	</tr>
 
 	<tr>
-		<th style="text-align: center">GlowTTS</th>
-		<th style="text-align: center">单阶段发音矫正</th>
-		<th style="text-align: center">双阶段发音矫正</th>
+		<th style="text-align: center">2</th>
+		<th style="text-align: center">3</th>
+		<th style="text-align: center">4</th>
 	</tr></thead><tbody>
 	<tr>
                     <td><audio src="correct/ERMS_arctic_a0079_tts.wav?raw=true" controls preload></audio></td>
@@ -231,23 +79,21 @@
 	</tbody></table>
 
 	
-        <h4>样例4: HQTV_arctic_a0030</h4>
+        <h4>I had faith in them.</h4>
 	<table><thead>
 	<tr>
 		<th style="text-align: center">原始音频</th>
-		<th style="text-align: center">声学单位重合成</th>
-		<th style="text-align: center">GoogleTTS</th>
+		<th style="text-align: center">1</th>
 	</tr></thead><tbody>
 	<tr>
                     <td><audio src="correct/HQTV_arctic_a0030_gt.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="correct/HQTV_arctic_a0030_unit_raw.wav?raw=true" controls preload></audio></td>
                     <td><audio src="correct/HQTV_arctic_a0030_gtts.wav?raw=true" controls preload></audio></td>
 	</tr>
 
 	<tr>
-		<th style="text-align: center">GlowTTS</th>
-		<th style="text-align: center">单阶段发音矫正</th>
-		<th style="text-align: center">双阶段发音矫正</th>
+		<th style="text-align: center">2</th>
+		<th style="text-align: center">3</th>
+		<th style="text-align: center">4</th>
 	</tr></thead><tbody>
 	<tr>
                     <td><audio src="correct/HQTV_arctic_a0030_tts.wav?raw=true" controls preload></audio></td>
@@ -258,23 +104,21 @@
 
 
 	
-        <h4>样例5: TLV_arctic_a0130</h4>
+        <h4>She was his now forever.</h4>
 	<table><thead>
 	<tr>
 		<th style="text-align: center">原始音频</th>
-		<th style="text-align: center">声学单位重合成</th>
-		<th style="text-align: center">GoogleTTS</th>
+		<th style="text-align: center">1</th>
 	</tr></thead><tbody>
 	<tr>
                     <td><audio src="correct/TLV_arctic_a0130_gt.wav?raw=true" controls preload></audio></td>
-                    <td><audio src="correct/TLV_arctic_a0130_unit_raw.wav?raw=true" controls preload></audio></td>
                     <td><audio src="correct/TLV_arctic_a0130_gtts.wav?raw=true" controls preload></audio></td>
 	</tr>
 
 	<tr>
-		<th style="text-align: center">GlowTTS</th>
-		<th style="text-align: center">单阶段发音矫正</th>
-		<th style="text-align: center">双阶段发音矫正</th>
+		<th style="text-align: center">2</th>
+		<th style="text-align: center">3</th>
+		<th style="text-align: center">4</th>
 	</tr></thead><tbody>
 	<tr>
                     <td><audio src="correct/TLV_arctic_a0130_tts.wav?raw=true" controls preload></audio></td>
